@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LandingPageController extends AbstractController
 {
-    #[Route('/', name: 'landing_page')]
+    #[Route('/', name: 'landing_page', methods: ['GET', 'POST'])]
     public function index(Request $request, OrderRepository $orderRepository, EntityManagerInterface $entityManager): Response
     {
         $order = new Order();
@@ -24,12 +24,10 @@ class LandingPageController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('landing_page/index_new.html.twig', [
-            'orders' => $orderRepository->findAll(),
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
         
     }

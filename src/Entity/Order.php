@@ -27,7 +27,14 @@ class Order
     private ?Client $client = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Address $addresses = null;
+    private ?Address $address = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Address $billing = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Address $shipping = null;
+
 
     public function getId(): ?int
     {
@@ -82,15 +89,41 @@ class Order
         return $this;
     }
 
-    public function getAddresses(): ?Address
+    public function getAddress(): ?Address
     {
-        return $this->addresses;
+        return $this->address;
     }
 
-    public function setAddresses(?Address $addresses): static
+    public function setAddress(?Address $addresses): static
     {
-        $this->addresses = $addresses;
+        $this->address = $addresses;
 
         return $this;
     }
+
+    public function getBilling(): ?Address
+    {
+        return $this->billing;
+    }
+
+    public function setBilling(?Address $billing): static
+    {
+        $this->billing = $billing;
+
+        return $this;
+    }
+
+    public function getShipping(): ?Address
+    {
+        return $this->shipping;
+    }
+
+    public function setShipping(?Address $shipping): static
+    {
+        $this->shipping = $shipping;
+
+        return $this;
+    }
+
+    
 }

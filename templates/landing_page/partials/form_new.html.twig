@@ -10,55 +10,54 @@
 </style>
 
 {# Etape 2 #}
+{{form_start(form)}}
 <div class="card step_2">
     <div class="card-content">
         <span class="card-title color_product_primary center-align">Étape 2</span>
         <p class="h6 center-align">Remplissez ce formulaire</p>
         <div class="form-wrapper">
+      <div class="input-field">
+                    {{form_widget(form.client.firstname)}}
+                    <label>Prénom</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                   {{form_widget(form.client.lastname)}}
+                    <label>Nom</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                    {{form_widget(form.address.address_line1)}}
+                    <label>Adresse</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                  {{form_widget(form.address.address_line2)}}
+                    <label>Complément adr.</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                    {{form_widget(form.address.city)}}
+                    <label>Ville</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                    {{form_widget(form.address.zipcode)}}
+                    <label>Code postal</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                    {{form_widget(form.address.country)}}
+                    <label>Pays</label>
+                    <div class="form-error"></div>
+                </div>
+                <div class="input-field">
+                    {{form_widget(form.address.phone)}}
+                    <label>téléphone</label>
+                    <div class="form-error"></div>
+                </div>
             <div class="input-field">
-                <input type="text">
-                <label>Prénom</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Nom</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Adresse</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Complément adr.</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Ville</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Code postal</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <select>
-                    <option>France</option>
-                </select>
-                <label>Pays</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
-                <label>Téléphone</label>
-                <div class="form-error"></div>
-            </div>
-            <div class="input-field">
-                <input type="text">
+                {{form_widget(form.client.email)}}
                 <label>Email</label>
                 <div class="form-error"></div>
             </div>
@@ -68,56 +67,19 @@
                 <div class="form-error"></div>
             </div>
         </div>
+       
     </div>
-    <ul class="collapsible">
+     <ul class="collapsible">
         <li>
             <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
             <div class="collapsible-body">
-                <div class="input-field">
-                    <input type="text">
-                    <label>Prénom</label>
+                 <div class="input-field">
+                    {{form_widget(form.shipping)}}
                     <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Nom</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Adresse</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Complément adr.</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Ville</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Code postal</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <select>
-                        <option>France</option>
-                    </select>
-                    <label>Pays</label>
-                    <div class="form-error"></div>
-                </div>
-                <div class="input-field">
-                    <input type="text">
-                    <label>Téléphone</label>
-                    <div class="form-error"></div>
-                </div>
+                </div>        
             </div>
         </li>
-    </ul>
+    </ul> 
 </div>
 {# Etape 3 #}
 <div class="card step_3">
@@ -149,5 +111,6 @@
                 </div>
             </li>
         </ul>
+{{form_end(form)}}
     </div>
 </div>

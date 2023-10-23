@@ -22,6 +22,9 @@ class Client
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 
+    #[ORM\ManyToOne(inversedBy: 'clients')]
+    private ?Address $shipping = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Client
     public function setEmail(?string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getShipping(): ?Address
+    {
+        return $this->shipping;
+    }
+
+    public function setShipping(?Address $shipping): static
+    {
+        $this->shipping = $shipping;
 
         return $this;
     }
