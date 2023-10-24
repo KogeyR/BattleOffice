@@ -20,34 +20,32 @@ class LandingPageController extends AbstractController
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
 
+    
         if ($form->isSubmitted() && $form->isValid()) {
-           
             $addressData = $order->getAddress();
             $entityManager->persist($addressData);
             $entityManager->flush();
-
-            $billingdata = $order->getBilling();
-            $entityManager->persist( $billingdata);
+    
+            $billingData = $order->getBilling();
+            $entityManager->persist($billingData);
             $entityManager->flush();
-
-
+    
             $clientData = $order->getClient();
             $entityManager->persist($clientData);
             $entityManager->flush();
-
- 
+    
             $order->setAddress($addressData);
             $order->setClient($clientData);
-
-         
-            $entityManager->persist($order);          
+          
+    
+            $entityManager->persist($order);
             $entityManager->flush();
-
+    
             $this->addFlash('success', 'Form submitted successfully.');
-
+    
             return $this->redirectToRoute('confirmation');
         }
-
+    
         return $this->render('landing_page/index_new.html.twig', [
             'form' => $form->createView(),
         ]);
