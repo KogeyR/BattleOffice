@@ -32,8 +32,10 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Address $billing = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\ManyToOne(inversedBy: 'shipping')]
     private ?Address $shipping = null;
+
+
 
 
     public function getId(): ?int
@@ -124,6 +126,7 @@ class Order
 
         return $this;
     }
+
 
     
 }

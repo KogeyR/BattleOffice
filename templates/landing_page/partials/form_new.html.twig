@@ -10,8 +10,8 @@
 </style>
 
 {# Etape 2 #}
-{{form_start(form)}}
 <div class="card step_2">
+{{form_start(form)}}
     <div class="card-content">
         <span class="card-title color_product_primary center-align">Étape 2</span>
         <p class="h6 center-align">Remplissez ce formulaire</p>
@@ -73,8 +73,9 @@
         <li>
             <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
             <div class="collapsible-body">
+
                  <div class="input-field">
-                    {{form_widget(form.shipping)}}
+                    {{form_widget(form.billing)}}
                     <div class="form-error"></div>
                 </div>        
             </div>
@@ -111,6 +112,6 @@
                 </div>
             </li>
         </ul>
-{{form_end(form)}}
     </div>
 </div>
+{{form_end(form)}}

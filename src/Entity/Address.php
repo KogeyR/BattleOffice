@@ -36,9 +36,13 @@ class Address
     #[ORM\OneToMany(mappedBy: 'billing', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'shipping', targetEntity: Order::class)]
+    private Collection $shipping;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->shipping = new ArrayCollection();
     }
 
 
@@ -143,6 +147,36 @@ class Address
             // set the owning side to null (unless already changed)
             if ($order->getBilling() === $this) {
                 $order->setBilling(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getShipping(): Collection
+    {
+        return $this->shipping;
+    }
+
+    public function addShipping(Order $shipping): static
+    {
+        if (!$this->shipping->contains($shipping)) {
+            $this->shipping->add($shipping);
+            $shipping->setShipping($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShipping(Order $shipping): static
+    {
+        if ($this->shipping->removeElement($shipping)) {
+            // set the owning side to null (unless already changed)
+            if ($shipping->getShipping() === $this) {
+                $shipping->setShipping(null);
             }
         }
 

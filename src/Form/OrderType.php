@@ -14,9 +14,8 @@ class OrderType extends AbstractType
         $builder
             ->add('address', AddressType::class)
             ->add('client', ClientType::class)
-            ->add('shipping', AddressType::class)
-            
-            
+            ->add('billing', AddressType::class)
+         
         ;
     }
 
@@ -24,6 +23,7 @@ class OrderType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Order::class,
+            'allow_extra_fields' => true,
         ]);
     }
 }
