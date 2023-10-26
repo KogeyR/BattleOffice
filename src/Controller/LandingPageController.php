@@ -16,11 +16,12 @@ class LandingPageController extends AbstractController
     #[Route('/', name: 'landing_page', methods: ['GET', 'POST'])]
     public function index(Request $request, OrderRepository $orderRepository, EntityManagerInterface $entityManager): Response
     {
+        $data = $request->request->all();
         $order = new Order();
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
-
-    
+       ;
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $addressData = $order->getAddress();
             $entityManager->persist($addressData);
@@ -33,10 +34,14 @@ class LandingPageController extends AbstractController
             $clientData = $order->getClient();
             $entityManager->persist($clientData);
             $entityManager->flush();
+
+            // $productData = $order->getProduct();
+            // $entityManager->persist($productData);
+            // $entityManager->flush();
     
             $order->setAddress($addressData);
             $order->setClient($clientData);
-          
+            $order->setProduct($data['order']['product']);
     
             $entityManager->persist($order);
             $entityManager->flush();
